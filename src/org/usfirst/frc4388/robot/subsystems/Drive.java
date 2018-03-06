@@ -193,7 +193,8 @@ public class Drive extends Subsystem implements ControlLoopable
     private AHRS gyroNavX;
 	private boolean useGyroLock;
 	private double gyroLockAngleDeg;
-	private double kPGyro = 0.04;
+	//private double kPGyro = 0.04;
+	private double kPGyro = 0.0625;
 	private boolean isCalibrating = false;
 	private double gyroOffsetDeg = 0;
 
@@ -621,12 +622,30 @@ public class Drive extends Subsystem implements ControlLoopable
 		else if (controlMode == DriveControlMode.CLIMB) {
 			m_moveOutput = climbSpeed;
 		}
-		m_steerOutput = adjustForSensitivity(m_steerScale, m_steerTrim,
-				m_steerInput, m_steerNonLinear, STEER_NON_LINEARITY);
+		
+		/*
+		if (m_steerInput == 0.0 && m_moveInput != 0.0 && !useGyroLock) {      // If just stopped turning, turn on gyro lock
+			setGyroLock(true, false);
+		} else if (m_steerInput != 0.0 && useGyroLock){ // If just started turning, turn off gyro lock
+			setGyroLock(false, false);
+		} */
+		
+		if (useGyroLock) {
+			if ((m_moveInput == 0.0) || (m_steerInput != 0.0)) {
+				setGyroLock(false, false);
+			}
+		} else {
+			if ((m_moveInput != 0.0) && (m_steerInput == 0.0)) {
+				setGyroLock(true, false);
+			}
+		}
 		
 		if (useGyroLock) {
 			double yawError = gyroLockAngleDeg - getGyroAngleDeg();
 			m_steerOutput = kPGyro * yawError;
+		} else {
+			m_steerOutput = adjustForSensitivity(m_steerScale, m_steerTrim,
+					m_steerInput, m_steerNonLinear, STEER_NON_LINEARITY);
 		}
 		
 		m_drive.arcadeDrive(m_moveOutput, m_steerOutput*.85);
