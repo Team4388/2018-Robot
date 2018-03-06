@@ -187,7 +187,10 @@ public class OI
 			//SmartDashboard.putData("move intake", new IntakePosition(true));
 			//SmartDashboard.putData("move intake2", new IntakePosition(false));
 			//SmartDashboard.putData("Move Stop", new ElevatorSetSpeed(ElevatorAuton.RAISE_ELEVATOR_SPEED));
-			SmartDashboard.putData("move elevator", new ElevatorBasic(20, 15));
+	        
+	        
+			SmartDashboard.putData("move elevator", new ElevatorBasic(20));
+	        
 			///SmartDashboard.putData("Move Down", new ElevatorSetSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED));
 			///SmartDashboard.putData("Move UP", new ElevatorSetSpeed(ElevatorAuton.STOP_ELEVATOR_SPEED));
 			

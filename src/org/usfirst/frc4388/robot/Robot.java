@@ -33,7 +33,8 @@ import org.usfirst.frc4388.robot.subsystems.*;
 import org.usfirst.frc4388.utility.ControlLooper;
 import org.usfirst.frc4388.robot.subsystems.Drive;
 import org.usfirst.frc4388.robot.subsystems.Carriage;
-import org.usfirst.frc4388.robot.subsystems.LED;;
+import org.usfirst.frc4388.robot.subsystems.LED;
+import org.usfirst.frc4388.robot.subsystems.Drive.DriveControlMode;;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -50,7 +51,6 @@ public class Robot extends IterativeRobot
 
 	//public static final Elevator elevator = new Elevator();
     public static final Carriage carriage = new Carriage();
-    public static final ElevatorAuton elevatorAuton = new ElevatorAuton();
     public static final Elevator elevator = new Elevator();
     
     
@@ -72,9 +72,15 @@ public class Robot extends IterativeRobot
 	public static OperationMode operationMode = OperationMode.TEST;
 
 	private SendableChooser<OperationMode> operationModeChooser;
-	private SendableChooser<Command> autonTaskChooser;
+	private SendableChooser<Command> RRautonTaskChooser;
+	private SendableChooser<Command> RLautonTaskChooser;
+	private SendableChooser<Command> LRautonTaskChooser;
+	private SendableChooser<Command> LLautonTaskChooser;
 
-    private Command autonomousCommand;
+    private Command RRautonomousCommand;
+    private Command RLautonomousCommand;
+    private Command LRautonomousCommand;
+    private Command LLautonomousCommand;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -109,14 +115,61 @@ public class Robot extends IterativeRobot
 	    operationModeChooser.addObject("Competition", OperationMode.COMPETITION);
 		SmartDashboard.putData("Operation Mode", operationModeChooser);
 		
-		autonTaskChooser = new SendableChooser<Command>();
-
-		//autonTaskChooser.addDefault("Blue Gear Loading Side Plus Travel Forward", new BlueGearLoadingSideForwardAuton());
-		autonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
-		//autonTaskChooser.addObject("Right Switch Forward", new RightSwitchForward());
-		autonTaskChooser.addDefault("RightStartLeftScore", new RightStartLeftScore());
 		
-		SmartDashboard.putData("Auton Task", autonTaskChooser);
+		
+		
+		
+		RRautonTaskChooser = new SendableChooser<Command>();
+		
+		RRautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
+		RRautonTaskChooser.addDefault("RR Cross The Base Line", new CrossTheBaseLine());
+		RRautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+
+		
+		SmartDashboard.putData("RRAuton Task", RRautonTaskChooser);
+		
+		
+		
+		
+		
+		RLautonTaskChooser = new SendableChooser<Command>();
+		
+		RLautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
+		RLautonTaskChooser.addDefault("RL Cross The Base Line", new CrossTheBaseLine());
+		RLautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+
+		
+		SmartDashboard.putData("RLAuton Task", RLautonTaskChooser);
+		
+		
+		
+		
+		
+		
+		LLautonTaskChooser = new SendableChooser<Command>();
+		
+		LLautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
+		LLautonTaskChooser.addDefault("LL Cross The Base Line", new CrossTheBaseLine());
+		LLautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+
+		
+		SmartDashboard.putData("LLAuton Task", LLautonTaskChooser);
+		
+		
+		
+		
+		
+		LRautonTaskChooser = new SendableChooser<Command>();
+		
+		LRautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
+		LRautonTaskChooser.addDefault("LR Cross The Base Line", new CrossTheBaseLine());
+		LRautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+
+		
+		SmartDashboard.putData("LRAuton Task", LRautonTaskChooser);
+
+
+
 
 		
 		//ledLights.setAllLightsOn(false);
@@ -158,14 +211,36 @@ public class Robot extends IterativeRobot
     	//elevator.resetElevatorEncoder();
     	drive.resetGyro();
     	drive.setIsRed(getAlliance().equals(Alliance.Red));
-        if (autonomousCommand != null) autonomousCommand.start();
-    }
-
-    /**
-     * This function is called periodically during autonomous
-     */
+        
+        
+    	String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+                if(gameData.length() > 0)
+                {
+		  if(gameData.charAt(0) == 'L')
+		  {
+			  if(gameData.charAt(1) == 'L')
+			  {
+				  if (LLautonomousCommand != null) LLautonomousCommand.start();
+			  } else {
+				  if (LRautonomousCommand != null) LRautonomousCommand.start();
+			  }
+	                }
+		  } else {
+			  if(gameData.charAt(1) == 'L')
+			  {
+				  if (RLautonomousCommand != null) RLautonomousCommand.start();
+			  } else {
+				  if (RRautonomousCommand != null) RRautonomousCommand.start();
+			  }
+	                }
+			
+		  }
+                
+    
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        //Robot.elevator.setControlMode(DriveControlMode.RAW);
 		updateStatus();
     }
 
@@ -174,7 +249,10 @@ public class Robot extends IterativeRobot
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (RRautonomousCommand != null) RRautonomousCommand.cancel();
+        if (RLautonomousCommand != null) RLautonomousCommand.cancel();
+        if (LRautonomousCommand != null) LRautonomousCommand.cancel();
+        if (LLautonomousCommand != null) LLautonomousCommand.cancel();
         //MotionProfileCache.getInstance().release();
     	updateChoosers();
         controlLoop.start();
@@ -185,6 +263,7 @@ public class Robot extends IterativeRobot
     	//shooterFeed.setSpeed(0);
     	//zarkerFeed.setSpeed(0);
     	//shooter.setHopperPosition(HopperState.CLOSE);
+    	//Robot.elevator.setControlMode(DriveControlMode.JOYSTICK);
         updateStatus();
     }
 
@@ -207,7 +286,10 @@ public class Robot extends IterativeRobot
     
     private void updateChoosers() {
 		operationMode = (OperationMode)operationModeChooser.getSelected();
-		autonomousCommand = (Command)autonTaskChooser.getSelected();
+		RRautonomousCommand = (Command)RRautonTaskChooser.getSelected();
+		RLautonomousCommand = (Command)RLautonTaskChooser.getSelected();
+		LRautonomousCommand = (Command)LRautonTaskChooser.getSelected();
+		LLautonomousCommand = (Command)LLautonTaskChooser.getSelected();
     }
     
     public Alliance getAlliance() {
@@ -216,6 +298,7 @@ public class Robot extends IterativeRobot
     
     public void updateStatus() {
     	drive.updateStatus(operationMode);
+    	elevator.updateStatus(operationMode);
     	//carriage.updateStatus(operationMode);
     	//shooter.updateStatus(operationMode);
     	//shooterFeed.updateStatus(operationMode);

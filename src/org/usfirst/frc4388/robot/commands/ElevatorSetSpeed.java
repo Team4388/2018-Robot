@@ -16,12 +16,12 @@ public class ElevatorSetSpeed extends Command {
 	// Constructor with speed
     public ElevatorSetSpeed(double RaiseSpeed) {
     	this.RaiseSpeed = RaiseSpeed;
-        requires(Robot.elevatorAuton);
+       // requires(Robot.elevatorAuton);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevatorAuton.setRaiseSpeed(RaiseSpeed);
+    	//Robot.elevatorAuton.setRaiseSpeed(RaiseSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -2,7 +2,7 @@ package org.usfirst.frc4388.robot.commands;
 
 import org.usfirst.frc4388.robot.Robot;
 import org.usfirst.frc4388.robot.commands.IntakeSetPosition.IntakePosition;
-import org.usfirst.frc4388.robot.subsystems.ElevatorAuton;
+//import org.usfirst.frc4388.robot.subsystems.ElevatorAuton;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -30,12 +30,12 @@ public class ElevatorSetDeploy extends Command {
     	secondTimerSet = false;
     	if (position == IntakePosition.CUBE_INTAKE) {
         	this.setTimeout(timeout);
-    		Robot.elevatorAuton.setRaiseSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED);
+    		//Robot.elevatorAuton.setRaiseSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED);
     		isDeploy = true;
     	}
     	else if (position == IntakePosition.CUBE_DEPLOY) {
         	this.setTimeout(timeout);
-    		Robot.elevatorAuton.setRaiseSpeed(ElevatorAuton.RAISE_ELEVATOR_SPEED);
+    		//Robot.elevatorAuton.setRaiseSpeed(ElevatorAuton.RAISE_ELEVATOR_SPEED);
     		isDeploy = true;
     	}
     	else {
@@ -63,7 +63,7 @@ public class ElevatorSetDeploy extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	if (isDeploy == true) {
-    		Robot.elevatorAuton.setRaiseSpeed(0);
+    		//Robot.elevatorAuton.setRaiseSpeed(0);
     	}
     }
 

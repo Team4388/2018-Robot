@@ -10,36 +10,36 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class ElevatorBasic extends Command {
-    private double m_targetInches;
-    private double m_maxVelocityInchesPerSec;
+    private double m_targetHeightInchesAboveFloor;
     private double m_speed;
-    private boolean m_goingBackwards;
+    private boolean m_goingUp;
     private double m_commandInitTimestamp;
 	private double m_lastCommandExecuteTimestamp = 0.0;
 	private double m_lastCommandExecutePeriod = 0.0;
+	public static boolean isfinishedElevatorBasic;
  
-    public ElevatorBasic(double targetInches, double maxVelocityInchesPerSec) {
+    public ElevatorBasic(double targetHeightInchesAboveFloor) {
         requires(Robot.elevator);
-        m_targetInches = targetInches;
-        m_maxVelocityInchesPerSec = maxVelocityInchesPerSec;
-        m_goingBackwards = (m_targetInches < 0.0);
+        m_targetHeightInchesAboveFloor = targetHeightInchesAboveFloor;
    }
-    
-    protected double velocityToMoveSpeed(double velocityInchesPerSec, boolean backwards) {
-    	double sign = (backwards ? -1.0 : 1.0);
-    	// Keep velocity above stiction limit (else bot will freeze and command will not complete)
-    	double velocity = Math.max(Constants.kDriveStraightBasicMinSpeedInchesPerSec, velocityInchesPerSec);
-        // Figure out move value based on percentage of measured max speed (i.e. that at full 1.0 joystick)
-    	return sign * velocity / Constants.kDriveStraightBasicMaxSpeedInchesPerSec;
-    }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.elevator.resetElevatorEncoder();
+    protected void initialize() 
+    {
     	Robot.elevator.setControlMode(DriveControlMode.RAW);
+    	
+    	double currentHeight = Robot.elevator.getElevatorHeightInchesAboveFloor();
     	// start out at half speed, as crude way to reduce slippage
-        m_speed = velocityToMoveSpeed(m_maxVelocityInchesPerSec/2.0, m_goingBackwards);
+    	m_goingUp = (m_targetHeightInchesAboveFloor > currentHeight);
+System.out.println("initialize(): cur=" + currentHeight + " , target=" + m_targetHeightInchesAboveFloor + " , going " + (m_goingUp ? "UP" : "DOWN"));
+    	if (m_goingUp) {
+    		m_speed = Constants.kElevatorBasicPercentOutputUp;
+    	}
+    	else {
+    		m_speed = Constants.kElevatorBasicPercentOutputDown;
+    	}
 		m_commandInitTimestamp = Timer.getFPGATimestamp();
+		
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -50,31 +50,31 @@ public class ElevatorBasic extends Command {
 			m_lastCommandExecutePeriod = currentTimestamp - m_lastCommandExecuteTimestamp;
 		}
 		m_lastCommandExecuteTimestamp = currentTimestamp;
-    	double steer = 0.0;
-
-    	
-    	Robot.elevator.rawMoveSteer(m_speed, steer);
+    	Robot.elevator.rawSetOutput(m_speed);
 		//SmartDashboard.putNumber("DSB Period", m_lastCommandExecutePeriod);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	boolean finished=false;
-    	double velocity = m_maxVelocityInchesPerSec;
-    	double position = (Robot.elevator.getelevatorPositionWorld());
-    	double remaining = (m_targetInches - position) * (m_goingBackwards ? -1.0 : 1.0);
+    	double currentHeight = Robot.elevator.getElevatorHeightInchesAboveFloor();
+    	double remaining = (m_targetHeightInchesAboveFloor - currentHeight) * (m_goingUp ? 1.0 : -1.0);
+System.out.println("cur=" + currentHeight + " , remaining=" + remaining + " , target=" + m_targetHeightInchesAboveFloor);
     	if (remaining < 0.0) {
     		finished = true;
-    	} else if (remaining < 0.1 * m_maxVelocityInchesPerSec / 2.0) {	// last 100 ms
+    		
+    	}
+    	/*} else if (remaining < 0.1 * m_maxVelocityInchesPerSec / 2.0) {	// last 100 ms
     		velocity = m_maxVelocityInchesPerSec / 4.0;		// quarter speed
     	} else if (remaining < 0.3 * m_maxVelocityInchesPerSec) {		// last 300 ms
     		velocity = m_maxVelocityInchesPerSec / 2.0;		// half speed
-    	}
+    	}*/
+    		
+    		
     	if (!finished) {
-    		m_speed = velocityToMoveSpeed(velocity, m_goingBackwards);
-    		SmartDashboard.putNumber("DSB Dist", position);
+    		SmartDashboard.putNumber("EB Dist", currentHeight);
     	} else {
-    		SmartDashboard.putNumber("DSB finDist", position);
+    		SmartDashboard.putNumber("EB finDist", currentHeight);
     	}
 		return finished;
     }
@@ -82,8 +82,12 @@ public class ElevatorBasic extends Command {
     // Called once after isFinished returns true
     protected void end() {
 		double currentTimestamp = Timer.getFPGATimestamp();
-    	SmartDashboard.putNumber("DSB Runtime", currentTimestamp - m_commandInitTimestamp);
-    	Robot.elevator.rawMoveSteer(0.0, 0.0);
+    	SmartDashboard.putNumber("EB Runtime", currentTimestamp - m_commandInitTimestamp);
+    	
+    	isfinishedElevatorBasic = isFinished();
+    	
+    	Robot.elevator.rawSetOutput(0.0);
+    	
 		Robot.elevator.setControlMode(DriveControlMode.JOYSTICK);
     }
 

@@ -21,13 +21,21 @@ public class Constants {
     public static double kDriveLowGearMaxSpeedInchesPerSec = 12.0 * 5.0;
     public static double kDriveStraightBasicMaxSpeedInchesPerSec = 72.0;
     public static double kDriveStraightBasicMinSpeedInchesPerSec = 5.0;
-    public static double kDriveTurnBasicTankMotorOutput = 0.2;
+    public static double kDriveTurnBasicTankMotorOutput = 0.5;
     public static double kDriveTurnBasicSingleMotorOutput = 0.15;
     public static double kElevatorWheelDiameterInches = 1;
 	// Encoders
 	public static int kDriveEncoderTicksPerRev = 4096;
 	public static double kDriveEncoderTicksPerInch = (double)kDriveEncoderTicksPerRev / (kDriveWheelDiameterInches * Math.PI);
-	public static double kElevatorEncoderTicksPerInch = (double)kDriveEncoderTicksPerRev /(kElevatorWheelDiameterInches * Math.PI) ;
+	
+	// Elevator
+	public static int kElevatorEncoderTickesPerRev = 256;
+    public static double kElevatorInchesOfTravelPerRev = 3.75;
+//	public static double kElevatorEncoderTicksPerInch = (double)kElevatorEncoderTickesPerRev / kElevatorInchesOfTravelPerRev;
+	public static double kElevatorEncoderTicksPerInch = 126.36;
+	public static double kElevatorBasicPercentOutputUp = -.9;
+	public static double kElevatorBasicPercentOutputDown =.9;
+	
     // CONTROL LOOP GAINS
 
     // PID gains for drive velocity loop (LOW GEAR)

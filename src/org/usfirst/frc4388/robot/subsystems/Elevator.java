@@ -59,7 +59,7 @@ public class Elevator extends Subsystem implements ControlLoopable
 	private double targetPPosition;
 	
 	//Encoder ticks to inches for encoders
-	public static final double ENCODER_TICKS_TO_INCHES = Constants.kDriveEncoderTicksPerInch;
+	public static final double ENCODER_TICKS_TO_INCHES = Constants.kElevatorEncoderTicksPerInch;
 	
 	//control mode for joystick control
 	private DriveControlMode controlMode = DriveControlMode.JOYSTICK;
@@ -82,6 +82,7 @@ public class Elevator extends Subsystem implements ControlLoopable
 	public boolean pressed;
 	SensorCollection isPressed;
 	
+	public boolean elevatorControlMode = false;
 	// Motor controllers
 	//private ArrayList<CANTalonEncoder> motorControllers = new ArrayList<CANTalonEncoder>();	
     
@@ -93,10 +94,11 @@ public class Elevator extends Subsystem implements ControlLoopable
 			elevatorRight = new CANTalonEncoder(RobotMap.ELEVATOR_MOTOR1_ID, ENCODER_TICKS_TO_INCHES, FeedbackDevice.QuadEncoder);
 			elevatorLeft = new WPI_TalonSRX(RobotMap.ELEVATOR_MOTOR2_ID);
 			
-			//Setting right elevator motor as follower
+    		elevatorRight.setInverted(false);
+
+			//Setting left elevator motor as follower
     		elevatorLeft.set(ControlMode.Follower, elevatorRight.getDeviceID());
     		elevatorLeft.setInverted(false);
-    		elevatorRight.setInverted(false);
     		
     		//Limit Switch Left
     		elevatorLeft.overrideLimitSwitchesEnable(true);
@@ -192,7 +194,7 @@ public class Elevator extends Subsystem implements ControlLoopable
     public void moveElevatorXbox()
     {
     	double moveElevatorInput;
-    	double elevatorSafeZone = 1.2; 
+    	double elevatorSafeZone = -30; 
     	
     	double elevatorPos = getEncoderElevatorPosition();
     	
@@ -205,19 +207,23 @@ public class Elevator extends Subsystem implements ControlLoopable
     	
     	if(elevatorTuningPressed == true)
       	{     		
-     		elevatorRight.set(moveElevatorInput * (0.5));
+     		elevatorRight.set(moveElevatorInput * 0.5);
       	}
      	else if(elevatorTuningPressed == false)
      	{
-     		if(elevatorPos <= elevatorSafeZone /*&& elevatorPos >= 0*/)
+     		elevatorRight.set(moveElevatorInput);
+     	}
+     		
+     		/*
+     		if(elevatorPos <= elevatorSafeZone && elevatorPos >= 0)
      		{
-     			elevatorRight.set(moveElevatorInput * 0.65);
+     			elevatorRight.set(moveElevatorInput);
      		}
      		else if(elevatorPos > elevatorSafeZone)
      		{
-     			elevatorRight.set(moveElevatorInput);
+     			elevatorRight.set(moveElevatorInput * 0.65);
      			
-     			/*
+     			
      			if(holdButtonPressed == true)
              	{
              		elevatorRight.set(-0.43 * (0.2));
@@ -226,18 +232,20 @@ public class Elevator extends Subsystem implements ControlLoopable
              	{
              		elevatorRight.set(moveElevatorInput * 0.75);
              	}
-             	*/
+             	
      		}
-     		/*
+     		
      		else if(elevatorPos < 0)
      		{
              	elevatorRight.set(moveElevatorInput * 0.75);
      		}
+     		
      		*/
-      	}
-     	
-     	System.out.println(elevatorPos);		//-6.9 to 1.9   total: 8.8 range
+    	
+    	System.out.println(moveElevatorInput);
     }
+     	
+//     	System.out.println(elevatorPos);		//-6.9 to 1.9   total: 8.8 range
     
 	//PID encoder position
 	public double getEncoderElevatorPosition()
@@ -245,6 +253,11 @@ public class Elevator extends Subsystem implements ControlLoopable
 		return elevatorRight.getPositionWorld();
 	}
 	
+	public double getElevatorHeightInchesAboveFloor()
+	{
+		return elevatorRight.getPositionWorld();
+	}
+
 	public synchronized void setControlMode(DriveControlMode controlMode) 
 	{
  		this.controlMode = controlMode;
@@ -284,6 +297,10 @@ public class Elevator extends Subsystem implements ControlLoopable
 		Robot.elevator.setControlMode(DriveControlMode.MOVE_POSITION_LOWEST);
 	}
 	*/
+	public void rawSetOutput(double output){
+		elevatorRight.set(/*ControlMode.PercentOutput,*/ output);
+	}
+	
 	public void holdInPos()
 	{
 		elevatorRight.set(-0.43 * 0.2);
@@ -301,23 +318,30 @@ public class Elevator extends Subsystem implements ControlLoopable
 		
 		if(isPressed.isFwdLimitSwitchClosed() == true)
 		{
-			Robot.elevator.setControlMode(DriveControlMode.STOP_MOTORS);
+			if (controlMode == DriveControlMode.JOYSTICK) {
+				Robot.elevator.setControlMode(DriveControlMode.STOP_MOTORS);	
+			}
 			pressed = true;
 		}
 		else
 		{
-			Robot.elevator.setControlMode(DriveControlMode.JOYSTICK);
+			if 	(controlMode == DriveControlMode.STOP_MOTORS){
+				{
+				Robot.elevator.setControlMode(DriveControlMode.JOYSTICK);
+				}
+			
 			pressed = false;
+			}
 		}
+
+	}
 		
 		//pressed = (isPressed.isFwdLimitSwitchClosed() == true) ? true : false;
-	}
 	
 	
 	
-    public double getelevatorPositionWorld() {
-    	return elevatorRight.getPositionWorld();
-    }
+
+
 	@Override
 	public void controlLoopUpdate() 
 	{
@@ -344,6 +368,12 @@ public class Elevator extends Subsystem implements ControlLoopable
 			{
 				isFinished = pidPositionControllerLowest.controlLoopUpdate(getEncoderElevatorPosition());
 			}
+			/*
+			else if(controlMode == DriveControlMode.RAW)
+			{
+				isFinished = pidPositionControllerLowest.controlLoopUpdate(getEncoderElevatorPosition());
+			}
+			*/
 		}
 	}
 
@@ -355,7 +385,7 @@ public class Elevator extends Subsystem implements ControlLoopable
     @Override
     public void periodic() 
     {
-    	isSwitchPressed();
+    //	isSwitchPressed();
     }
     
 	@Override
@@ -386,6 +416,8 @@ public class Elevator extends Subsystem implements ControlLoopable
 		{
 			try 
 			{
+				SmartDashboard.putNumber("Elevator Pos Ticks", elevatorRight.getSelectedSensorPosition(0));
+				SmartDashboard.putNumber("Elevator Pos Inches", getElevatorHeightInchesAboveFloor());
 				//SmartDashboard.putData(pressed);
 			}
 			catch (Exception e) 
@@ -394,9 +426,7 @@ public class Elevator extends Subsystem implements ControlLoopable
 			}
 		}
 	}
-	public void rawMoveSteer(double move, double steer) {
-		m_drive.arcadeDrive(move, steer, false);
-	}
+
 	
 }
 
