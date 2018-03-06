@@ -121,9 +121,17 @@ public class Robot extends IterativeRobot
 		
 		RRautonTaskChooser = new SendableChooser<Command>();
 		
-		RRautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
-		RRautonTaskChooser.addDefault("RR Cross The Base Line", new CrossTheBaseLine());
-		RRautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+		RRautonTaskChooser.addDefault("Choose RR Program", new CrossTheBaseLine());
+		
+		RRautonTaskChooser.addObject("1", new CrossTheBaseLine());
+		RRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
+		
+		RRautonTaskChooser.addObject("2", new CrossTheBaseLine());
+		RRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		
+		RRautonTaskChooser.addObject("3", new CrossTheBaseLine());
+		RRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
+		RRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
 		
 		SmartDashboard.putData("RRAuton Task", RRautonTaskChooser);
@@ -134,9 +142,17 @@ public class Robot extends IterativeRobot
 		
 		RLautonTaskChooser = new SendableChooser<Command>();
 		
-		RLautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
-		RLautonTaskChooser.addDefault("RL Cross The Base Line", new CrossTheBaseLine());
-		RLautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+		RLautonTaskChooser.addDefault("Choose RL Program", new CrossTheBaseLine());
+		
+		RLautonTaskChooser.addObject("1", new CrossTheBaseLine());
+		RLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
+		
+		RLautonTaskChooser.addObject("2", new CrossTheBaseLine());
+		RLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		
+		RLautonTaskChooser.addObject("3", new CrossTheBaseLine());
+		RLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
+		RLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
 		
 		SmartDashboard.putData("RLAuton Task", RLautonTaskChooser);
@@ -148,9 +164,17 @@ public class Robot extends IterativeRobot
 		
 		LLautonTaskChooser = new SendableChooser<Command>();
 		
-		LLautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
-		LLautonTaskChooser.addDefault("LL Cross The Base Line", new CrossTheBaseLine());
-		LLautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+		LLautonTaskChooser.addDefault("Choose LL Program", new CrossTheBaseLine());
+		
+		LLautonTaskChooser.addObject("1", new CrossTheBaseLine());
+		LLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
+		
+		LLautonTaskChooser.addObject("2", new CrossTheBaseLine());
+		LLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		
+		LLautonTaskChooser.addObject("3", new CrossTheBaseLine());
+		LLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
+		LLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
 		
 		SmartDashboard.putData("LLAuton Task", LLautonTaskChooser);
@@ -161,9 +185,17 @@ public class Robot extends IterativeRobot
 		
 		LRautonTaskChooser = new SendableChooser<Command>();
 		
-		LRautonTaskChooser.addObject("Right Switch", new RightSwitchAuton());
-		LRautonTaskChooser.addDefault("LR Cross The Base Line", new CrossTheBaseLine());
-		LRautonTaskChooser.addObject("LeftSwitch Center", new CenterLeft());
+		LRautonTaskChooser.addDefault("Choose LR Program", new CrossTheBaseLine());
+		
+		LRautonTaskChooser.addObject("1", new CrossTheBaseLine());
+		LRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
+		
+		LRautonTaskChooser.addObject("2", new CrossTheBaseLine());
+		LRautonTaskChooser.addObject("Center Left Switch", new CenterLeft());
+		
+		LRautonTaskChooser.addObject("3", new CrossTheBaseLine());
+		LRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
+		LRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
 		
 		SmartDashboard.putData("LRAuton Task", LRautonTaskChooser);
