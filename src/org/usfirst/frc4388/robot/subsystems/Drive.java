@@ -286,6 +286,20 @@ public class Drive extends Subsystem implements ControlLoopable
 		}
 	}
 
+	public void setToBrakeOnNeutral(boolean brakeVsCoast) {
+		if (brakeVsCoast) {
+			leftDrive1.setNeutralMode(NeutralMode.Brake);
+			leftDrive2.setNeutralMode(NeutralMode.Brake);
+			rightDrive1.setNeutralMode(NeutralMode.Brake);
+			rightDrive2.setNeutralMode(NeutralMode.Brake);
+		} else {
+			leftDrive1.setNeutralMode(NeutralMode.Coast);
+			leftDrive2.setNeutralMode(NeutralMode.Coast);
+			rightDrive1.setNeutralMode(NeutralMode.Coast);
+			rightDrive2.setNeutralMode(NeutralMode.Coast);
+		}
+	}
+	
 	@Override
 	public void initDefaultCommand() {
 	}
@@ -623,20 +637,13 @@ public class Drive extends Subsystem implements ControlLoopable
 			m_moveOutput = climbSpeed;
 		}
 		
-		/*
-		if (m_steerInput == 0.0 && m_moveInput != 0.0 && !useGyroLock) {      // If just stopped turning, turn on gyro lock
-			setGyroLock(true, false);
-		} else if (m_steerInput != 0.0 && useGyroLock){ // If just started turning, turn off gyro lock
-			setGyroLock(false, false);
-		} */
-		
-		if (useGyroLock) {
-			if ((m_moveInput == 0.0) || (m_steerInput != 0.0)) {
-				setGyroLock(false, false);
+		if (useGyroLock) {											// If currently in gyro lock mode,
+			if ((m_moveInput == 0.0) || (m_steerInput != 0.0)) {	// but stopped driving or started turning,
+				setGyroLock(false, false);							// turn off gyro lock mode
 			}
-		} else {
-			if ((m_moveInput != 0.0) && (m_steerInput == 0.0)) {
-				setGyroLock(true, false);
+		} else {													// If not yet in gyro lock mode,
+			if ((m_moveInput != 0.0) && (m_steerInput == 0.0)) {	// but just started driving without turning,
+				setGyroLock(true, false);							// gyro lock to current heading
 			}
 		}
 		

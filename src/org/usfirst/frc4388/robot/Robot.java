@@ -289,6 +289,7 @@ public class Robot extends IterativeRobot
         if (RLautonomousCommand != null) RLautonomousCommand.cancel();
         if (LRautonomousCommand != null) LRautonomousCommand.cancel();
         if (LLautonomousCommand != null) LLautonomousCommand.cancel();
+        drive.setToBrakeOnNeutral(false);	// coast to avoid tipping when driver stops suddenly
         //MotionProfileCache.getInstance().release();
     	updateChoosers();
         controlLoop.start();
