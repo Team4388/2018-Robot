@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class CenterRight extends CommandGroup 
-{
+public class CenterRight extends CommandGroup {
+    
     public CenterRight()
     {
     	addSequential(new DriveGyroReset());

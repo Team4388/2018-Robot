@@ -29,10 +29,10 @@ public class CenterLeft extends CommandGroup {
     	addSequential(new IntakePosition(true));
     	addSequential(new DriveStraightBasic(-15, 60, true, true, 0));
     	addSequential(new DriveTurnBasic(true, 130, 300, MPSoftwareTurnType.TANK));
-    	addSequential(new DriveStraightBasic(65, 60, true, true, 0));
-    	addSequential(new DriveTurnBasic(true, 28, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveStraightBasic(53, 60, true, true, 0));
     	addSequential(new ElevatorBasic(20));
-    	addSequential(new DriveStraightBasic(30, 60, true, true, 0));
+    	addSequential(new DriveTurnBasic(true, 34.5, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveStraightBasic(19, 60, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));

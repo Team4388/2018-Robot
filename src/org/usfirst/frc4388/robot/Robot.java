@@ -128,6 +128,7 @@ public class Robot extends IterativeRobot
 		
 		RRautonTaskChooser.addObject("2", new CrossTheBaseLine());
 		RRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		RRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 		RRautonTaskChooser.addObject("3", new CrossTheBaseLine());
 		RRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
@@ -149,6 +150,7 @@ public class Robot extends IterativeRobot
 		
 		RLautonTaskChooser.addObject("2", new CrossTheBaseLine());
 		RLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		RLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 		RLautonTaskChooser.addObject("3", new CrossTheBaseLine());
 		RLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
@@ -171,6 +173,7 @@ public class Robot extends IterativeRobot
 		
 		LLautonTaskChooser.addObject("2", new CrossTheBaseLine());
 		LLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		LLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 		LLautonTaskChooser.addObject("3", new CrossTheBaseLine());
 		LLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
@@ -191,7 +194,8 @@ public class Robot extends IterativeRobot
 		LRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
 		LRautonTaskChooser.addObject("2", new CrossTheBaseLine());
-		LRautonTaskChooser.addObject("Center Left Switch", new CenterLeft());
+		LRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
+		LRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 		LRautonTaskChooser.addObject("3", new CrossTheBaseLine());
 		LRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
