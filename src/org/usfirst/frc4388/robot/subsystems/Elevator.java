@@ -211,19 +211,15 @@ public class Elevator extends Subsystem implements ControlLoopable
       	}
      	else if(elevatorTuningPressed == false)
      	{
-     		elevatorRight.set(moveElevatorInput);
-     	}
-     		
-     		/*
      		if(elevatorPos <= elevatorSafeZone && elevatorPos >= 0)
      		{
      			elevatorRight.set(moveElevatorInput);
      		}
      		else if(elevatorPos > elevatorSafeZone)
      		{
-     			elevatorRight.set(moveElevatorInput * 0.65);
+     			elevatorRight.set(moveElevatorInput * 0.8);
      			
-     			
+     			/*
      			if(holdButtonPressed == true)
              	{
              		elevatorRight.set(-0.43 * (0.2));
@@ -232,17 +228,15 @@ public class Elevator extends Subsystem implements ControlLoopable
              	{
              		elevatorRight.set(moveElevatorInput * 0.75);
              	}
-             	
+             	*/
      		}
-     		
+     		/*
      		else if(elevatorPos < 0)
      		{
              	elevatorRight.set(moveElevatorInput * 0.75);
      		}
-     		
      		*/
-    	
-    	System.out.println(moveElevatorInput);
+     	}
     }
      	
 //     	System.out.println(elevatorPos);		//-6.9 to 1.9   total: 8.8 range
