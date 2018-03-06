@@ -19,21 +19,21 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class RightStartLeftScore extends CommandGroup {
+public class LeftStartRightScore extends CommandGroup {
     
-    public RightStartLeftScore()  //////////TUNEDISH AND ALMOST GOOD
+    public LeftStartRightScore() 
     {
     	addSequential(new DriveGyroReset());
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
-    	addSequential(new DriveStraightBasic(-215, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(215, 60, true, true, 0));
     	addSequential(new ElevatorBasic(5));
-    	addSequential(new DriveTurnBasic(true, 87, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, -87, 300, MPSoftwareTurnType.TANK));
     	addSequential(new DriveStraightBasic(205, 60, true, true, 0));
     	addSequential(new ElevatorBasic(30));
     	addSequential(new DriveStraightBasic(30, 60, true, true, 0));
-    	addSequential(new DriveTurnBasic(true, -125, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, 125, 300, MPSoftwareTurnType.TANK));
     	addSequential(new DriveStraightBasic(30, 60, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
