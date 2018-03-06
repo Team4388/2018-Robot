@@ -22,23 +22,21 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class CenterLeft extends CommandGroup {
     
-    public CenterLeft() {
+    public CenterLeft() 
+    {
     	addSequential(new DriveGyroReset());
     	
     	addSequential(new IntakePosition(true));
-    	addSequential(new DriveStraightBasic(-10, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(-15, 60, true, true, 0));
     	addSequential(new DriveTurnBasic(true, 130, 300, MPSoftwareTurnType.TANK));
-    	addSequential(new DriveStraightBasic(50, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(65, 60, true, true, 0));
     	addSequential(new DriveTurnBasic(true, 28, 300, MPSoftwareTurnType.TANK));
     	addSequential(new ElevatorBasic(20));
-    	addSequential(new DriveStraightBasic(25, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(30, 60, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
-    	addSequential(new WaitCommand(.5));
+    	addSequential(new WaitCommand(.2));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
-
-    	//addSequential(new DriveStraightMP(60, 10, true, true, 0));  // 95 for 112" greenville
-       
     }
 }
