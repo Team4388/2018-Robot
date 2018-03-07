@@ -9,6 +9,9 @@ import buttons.XBoxTriggerButton;
 import org.usfirst.frc4388.controller.IHandController;
 import org.usfirst.frc4388.controller.XboxController;
 import org.usfirst.frc4388.robot.commands.*;
+import org.usfirst.frc4388.robot.commands.auton.CrossTheBaseLine;
+import org.usfirst.frc4388.robot.commands.auton.RightSwitchAuton;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -190,6 +193,7 @@ public class OI
 	        
 	        
 			SmartDashboard.putData("move elevator", new ElevatorBasic(20));
+			SmartDashboard.putData("test", new RightSwitchAuton());
 	        
 			///SmartDashboard.putData("Move Down", new ElevatorSetSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED));
 			///SmartDashboard.putData("Move UP", new ElevatorSetSpeed(ElevatorAuton.STOP_ELEVATOR_SPEED));

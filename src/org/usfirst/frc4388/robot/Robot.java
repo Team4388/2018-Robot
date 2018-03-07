@@ -123,16 +123,16 @@ public class Robot extends IterativeRobot
 		
 		RRautonTaskChooser.addDefault("Choose RR Program", new CrossTheBaseLine());
 		
-		RRautonTaskChooser.addObject("1", new CrossTheBaseLine());
+
 		RRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
-		RRautonTaskChooser.addObject("2", new CrossTheBaseLine());
 		RRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		RRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-		RRautonTaskChooser.addObject("3", new CrossTheBaseLine());
+
 		RRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		RRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
+		RRautonTaskChooser.addObject("Scale3", new ScaleFrom3());
 
 		
 		SmartDashboard.putData("RRAuton Task", RRautonTaskChooser);
@@ -145,14 +145,14 @@ public class Robot extends IterativeRobot
 		
 		RLautonTaskChooser.addDefault("Choose RL Program", new CrossTheBaseLine());
 		
-		RLautonTaskChooser.addObject("1", new CrossTheBaseLine());
+
 		RLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
-		RLautonTaskChooser.addObject("2", new CrossTheBaseLine());
+
 		RLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		RLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-		RLautonTaskChooser.addObject("3", new CrossTheBaseLine());
+
 		RLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		RLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
@@ -168,14 +168,14 @@ public class Robot extends IterativeRobot
 		
 		LLautonTaskChooser.addDefault("Choose LL Program", new CrossTheBaseLine());
 		
-		LLautonTaskChooser.addObject("1", new CrossTheBaseLine());
+
 		LLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
-		LLautonTaskChooser.addObject("2", new CrossTheBaseLine());
+
 		LLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		LLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-		LLautonTaskChooser.addObject("3", new CrossTheBaseLine());
+
 		LLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		LLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
@@ -189,15 +189,13 @@ public class Robot extends IterativeRobot
 		LRautonTaskChooser = new SendableChooser<Command>();
 		
 		LRautonTaskChooser.addDefault("Choose LR Program", new CrossTheBaseLine());
-		
-		LRautonTaskChooser.addObject("1", new CrossTheBaseLine());
+	
 		LRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
-		LRautonTaskChooser.addObject("2", new CrossTheBaseLine());
+
 		LRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		LRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-		LRautonTaskChooser.addObject("3", new CrossTheBaseLine());
 		LRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		LRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
@@ -251,28 +249,31 @@ public class Robot extends IterativeRobot
         
     	String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-                if(gameData.length() > 0)
-                {
-		  if(gameData.charAt(0) == 'L')
-		  {
-			  if(gameData.charAt(1) == 'L')
-			  {
-				  if (LLautonomousCommand != null) LLautonomousCommand.start();
-			  } else {
-				  if (LRautonomousCommand != null) LRautonomousCommand.start();
-			  }
-	                }
-		  } else {
-			  if(gameData.charAt(1) == 'L')
-			  {
-				  if (RLautonomousCommand != null) RLautonomousCommand.start();
-			  } else {
-				  if (RRautonomousCommand != null) RRautonomousCommand.start();
-			  }
-	                }
-			
-		  }
-                
+        if (gameData.length() > 0) {
+        	if (gameData.charAt(0) == 'L') {
+        		if (gameData.charAt(1) == 'L') {
+        			if (LLautonomousCommand != null) {
+        				LLautonomousCommand.start();
+        			}
+        		} else {
+        			if (LRautonomousCommand != null) {
+        				LRautonomousCommand.start();
+        			}
+        		}
+        	} else {
+        		if (gameData.charAt(1) == 'L') {
+  				  	if (RLautonomousCommand != null) {
+  				  		RLautonomousCommand.start();
+  				  	}
+        		} else {
+        			if (RRautonomousCommand != null) {
+        				RRautonomousCommand.start();
+        			}
+  			  	}
+        	}
+		}
+	}
+
     
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
