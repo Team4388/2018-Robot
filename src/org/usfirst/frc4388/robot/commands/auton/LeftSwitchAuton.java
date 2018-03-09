@@ -20,27 +20,28 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class CenterRight extends CommandGroup {
+public class LeftSwitchAuton extends CommandGroup {
     
-    public CenterRight()
-    {
+    public LeftSwitchAuton() {
     	addSequential(new DriveGyroReset());
-    	addSequential(new IntakePosition(true));
     	addSequential(new DriveSpeedShift(true));
+    	addSequential(new IntakePosition(true));
     	
     	
-    	addSequential(new DriveStraightBasic(-15, 60, true, true, 0));
-    	addSequential(new DriveTurnBasic(true, -130, 300, MPSoftwareTurnType.TANK));
-    	addSequential(new DriveStraightBasic(53, 60, true, true, 0));
-    	addSequential(new ElevatorBasic(20));
-    	addSequential(new DriveTurnBasic(true, -34.5, 300, MPSoftwareTurnType.TANK));
-    	addSequential(new DriveStraightBasic(19, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(-130, 60, true, true, 0));
+    	addSequential(new ElevatorBasic(30));
+    	addSequential(new DriveTurnBasic(true, -87, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new ElevatorBasic(30));
+    	addSequential(new DriveStraightBasic(20, 60, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
-    	addSequential(new WaitCommand(.2));
+    	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
     	addSequential(new DriveStraightBasic(-20, 60, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
+
+    	//addSequential(new DriveStraightMP(60, 10, true, true, 0));  // 95 for 112" greenville
+       
     }
 }

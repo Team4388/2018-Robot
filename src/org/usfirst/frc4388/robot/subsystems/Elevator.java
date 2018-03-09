@@ -194,7 +194,7 @@ public class Elevator extends Subsystem implements ControlLoopable
     public void moveElevatorXbox()
     {
     	double moveElevatorInput;
-    	double elevatorSafeZone = -30; 
+    	double elevatorSafeZone = 15; 
     	
     	double elevatorPos = getEncoderElevatorPosition();
     	

@@ -126,13 +126,11 @@ public class Robot extends IterativeRobot
 
 		RRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
 		
-		RRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		RRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 
 		RRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
-		RRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
-		RRautonTaskChooser.addObject("Scale3", new ScaleFrom3());
+		RRautonTaskChooser.addObject("Right to Right Scale", new ScaleFrom3());
 
 		
 		SmartDashboard.putData("RRAuton Task", RRautonTaskChooser);
@@ -147,15 +145,11 @@ public class Robot extends IterativeRobot
 		
 
 		RLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
-		
+		RLautonTaskChooser.addObject("Left to Left Scale", new ScaleFrom1());
 
-		RLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
 		RLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-
 		RLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
-		RLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
-
 		
 		SmartDashboard.putData("RLAuton Task", RLautonTaskChooser);
 		
@@ -169,36 +163,29 @@ public class Robot extends IterativeRobot
 		LLautonTaskChooser.addDefault("Choose LL Program", new CrossTheBaseLine());
 		
 
-		LLautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
+		LLautonTaskChooser.addObject("Left to Left Scale", new ScaleFrom1());
+		LLautonTaskChooser.addObject("Left to Left Switch", new LeftSwitchAuton());
 		
 
 		LLautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
-		LLautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
 
-		LLautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		LLautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
 
 		
 		SmartDashboard.putData("LLAuton Task", LLautonTaskChooser);
 		
 		
-		
-		
-		
 		LRautonTaskChooser = new SendableChooser<Command>();
 		
 		LRautonTaskChooser.addDefault("Choose LR Program", new CrossTheBaseLine());
 	
-		LRautonTaskChooser.addObject("Left to Right Switch", new LeftStartRightScore());
-		
+		LRautonTaskChooser.addObject("Left to Left Switch", new LeftSwitchAuton());
 
 		LRautonTaskChooser.addObject("Center to Left Switch", new CenterLeft());
-		LRautonTaskChooser.addObject("Center to Right Switch", new CenterRight());
 		
-		LRautonTaskChooser.addObject("Right to Right Switch", new RightSwitchAuton());
 		LRautonTaskChooser.addObject("Right to Left Switch", new RightStartLeftScore());
-
+		LRautonTaskChooser.addObject("Right To Right Scale", new ScaleFrom3());
 		
 		SmartDashboard.putData("LRAuton Task", LRautonTaskChooser);
 
