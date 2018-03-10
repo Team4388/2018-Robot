@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -99,17 +100,14 @@ public class Elevator extends Subsystem implements ControlLoopable
 			//Setting left elevator motor as follower
     		elevatorLeft.set(ControlMode.Follower, elevatorRight.getDeviceID());
     		elevatorLeft.setInverted(false);
-    		
+    		elevatorRight.setSensorPhase(true);
+    		elevatorLeft.setNeutralMode(NeutralMode.Brake);
+    		elevatorRight.setNeutralMode(NeutralMode.Brake);
     		//Limit Switch Left
-    		elevatorLeft.overrideLimitSwitchesEnable(true);
+    		//elevatorLeft.overrideLimitSwitchesEnable(true);
     		elevatorLeft.configForwardLimitSwitchSource(limitSwitchSource, LimitSwitchNormal.NormallyOpen, 0);
     		elevatorLeft.configReverseLimitSwitchSource(limitSwitchSource, LimitSwitchNormal.NormallyOpen, 0);
     		
-    		//Limit Switch Right
-    		elevatorRight.overrideLimitSwitchesEnable(true);
-			elevatorRight.configForwardLimitSwitchSource(limitSwitchSource, LimitSwitchNormal.NormallyOpen, 0);
-    		elevatorRight.configReverseLimitSwitchSource(limitSwitchSource, LimitSwitchNormal.NormallyOpen, 0);
-
     	}
     	catch(Exception e)
     	{
@@ -211,6 +209,9 @@ public class Elevator extends Subsystem implements ControlLoopable
       	}
      	else if(elevatorTuningPressed == false)
      	{
+     		elevatorRight.set(moveElevatorInput);
+     	}
+    	/*
      		if(elevatorPos <= elevatorSafeZone && elevatorPos >= 0)
      		{
      			elevatorRight.set(moveElevatorInput);
@@ -219,7 +220,7 @@ public class Elevator extends Subsystem implements ControlLoopable
      		{
      			elevatorRight.set(moveElevatorInput * 0.8);
      			
-     			/*
+     			
      			if(holdButtonPressed == true)
              	{
              		elevatorRight.set(-0.43 * (0.2));
@@ -229,17 +230,16 @@ public class Elevator extends Subsystem implements ControlLoopable
              		elevatorRight.set(moveElevatorInput * 0.75);
              	}
              	*/
-     		}
+     		//}
      		/*
      		else if(elevatorPos < 0)
      		{
              	elevatorRight.set(moveElevatorInput * 0.75);
      		}
      		*/
-     	}
-    }
      	
 //     	System.out.println(elevatorPos);		//-6.9 to 1.9   total: 8.8 range
+	}
     
 	//PID encoder position
 	public double getEncoderElevatorPosition()
@@ -295,7 +295,7 @@ public class Elevator extends Subsystem implements ControlLoopable
 		elevatorRight.set(/*ControlMode.PercentOutput,*/ output);
 	}
 	
-	public void holdInPos()
+	/*public void holdInPos()
 	{
 		elevatorRight.set(-0.43 * 0.2);
 	}
@@ -326,9 +326,9 @@ public class Elevator extends Subsystem implements ControlLoopable
 			
 			pressed = false;
 			}
-		}
+		}*/
 
-	}
+	
 		
 		//pressed = (isPressed.isFwdLimitSwitchClosed() == true) ? true : false;
 	
