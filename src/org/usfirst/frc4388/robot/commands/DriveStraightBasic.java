@@ -59,7 +59,7 @@ public class DriveStraightBasic extends Command {
 		m_lastCommandExecuteTimestamp = currentTimestamp;
     	double steer = 0.0;
     	if (m_useGyroLock) {
-    		steer = - Robot.drive.getGyroAngleDeg() / 16.0;	//TODO: tune
+    		steer = - Robot.drive.getGyroAngleDeg() / 20.0;	//TODO: tune
     	}
     	Robot.drive.rawMoveSteer(m_speed, steer);
 		//SmartDashboard.putNumber("DSB Period", m_lastCommandExecutePeriod);
