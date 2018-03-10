@@ -28,20 +28,20 @@ public class LeftSwitchAuton extends CommandGroup {
     	addSequential(new IntakePosition(true));
     	
     	
-    	addSequential(new DriveStraightBasic(-130, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(-130, 50, true, true, 0));
     	addSequential(new ElevatorBasic(30));
     	addSequential(new DriveTurnBasic(true, -87, 300, MPSoftwareTurnType.TANK));
     	addSequential(new ElevatorBasic(30));
-    	addSequential(new DriveStraightBasic(20, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(20, 50, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
     	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
-    	addSequential(new DriveStraightBasic(-20, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(-20, 50, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
 
-    	//addSequential(new DriveStraightMP(60, 10, true, true, 0));  // 95 for 112" greenville
+    	//addSequential(new DriveStraightMP(50, 10, true, true, 0));  // 95 for 112" greenville
        
     }
 }

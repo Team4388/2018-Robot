@@ -43,6 +43,6 @@ public class LeftStartRightScore extends CommandGroup {
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
     	addSequential(new DriveStraightBasic(-10, 50, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
-    	//addSequential(new DriveStraightMP(60, 10, true, true, 0));  // 95 for 112" greenville
+    	//addSequential(new DriveStraightMP(50, 10, true, true, 0));  // 95 for 112" greenville
     }
 }

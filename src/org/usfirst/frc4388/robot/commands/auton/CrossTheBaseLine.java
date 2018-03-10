@@ -19,7 +19,7 @@ public class CrossTheBaseLine extends CommandGroup {
     	addSequential(new DriveGyroReset());
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
-    	addSequential(new DriveStraightBasic(-90, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(-90, 50, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
 
        
