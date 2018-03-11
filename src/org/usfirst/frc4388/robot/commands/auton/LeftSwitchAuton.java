@@ -30,7 +30,7 @@ public class LeftSwitchAuton extends CommandGroup {
     	
     	addSequential(new DriveStraightBasic(-130, 50, true, true, 0));
     	addSequential(new ElevatorBasic(30));
-    	addSequential(new DriveTurnBasic(true, -87, 300, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, -87, 150, MPSoftwareTurnType.TANK));
     	addSequential(new ElevatorBasic(30));
     	addSequential(new DriveStraightBasic(20, 50, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));

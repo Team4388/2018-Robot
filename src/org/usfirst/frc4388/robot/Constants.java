@@ -33,8 +33,8 @@ public class Constants {
     public static double kElevatorInchesOfTravelPerRev = 3.75;
 //	public static double kElevatorEncoderTicksPerInch = (double)kElevatorEncoderTickesPerRev / kElevatorInchesOfTravelPerRev;
 	public static double kElevatorEncoderTicksPerInch = 126.36;
-	public static double kElevatorBasicPercentOutputUp = -.9;
-	public static double kElevatorBasicPercentOutputDown =.9;
+	public static double kElevatorBasicPercentOutputUp = -.8;
+	public static double kElevatorBasicPercentOutputDown =.7;
 	
     // CONTROL LOOP GAINS
 

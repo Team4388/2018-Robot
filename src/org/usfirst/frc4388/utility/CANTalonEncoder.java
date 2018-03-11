@@ -8,6 +8,8 @@ public class CANTalonEncoder extends WPI_TalonSRX
 	private double encoderTicksToWorld;
 	private boolean isRight = true;
 	
+
+	
 	public CANTalonEncoder(int deviceNumber, double encoderTicksToWorld, FeedbackDevice feedbackDevice) {
 		this(deviceNumber, encoderTicksToWorld, false, feedbackDevice);
 	}

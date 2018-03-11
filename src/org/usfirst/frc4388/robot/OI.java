@@ -193,7 +193,6 @@ public class OI
 	        
 	        
 			SmartDashboard.putData("move elevator", new ElevatorBasic(20));
-			SmartDashboard.putData("test", new RightSwitchAuton());
 	        
 			///SmartDashboard.putData("Move Down", new ElevatorSetSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED));
 			///SmartDashboard.putData("Move UP", new ElevatorSetSpeed(ElevatorAuton.STOP_ELEVATOR_SPEED));

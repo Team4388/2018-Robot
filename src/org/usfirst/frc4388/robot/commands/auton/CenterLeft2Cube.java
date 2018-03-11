@@ -20,28 +20,46 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class CenterRight extends CommandGroup {
+public class CenterLeft2Cube extends CommandGroup {
     
-    public CenterRight() 
+    public CenterLeft2Cube() 
     {
     	addSequential(new DriveGyroReset());
     	addSequential(new IntakePosition(true));
     	addSequential(new DriveSpeedShift(true));
     	
     	addSequential(new DriveStraightBasic(-15, 30, true, true, 0));
-    	addSequential(new DriveTurnBasic(true, -115, 150, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, 115, 150, MPSoftwareTurnType.TANK));
     	addSequential(new WaitCommand(.2));
     	addSequential(new DriveStraightBasic(80, 45, true, true, 0));
-    	addSequential(new ElevatorBasic(25));
-    	addSequential(new DriveTurnBasic(true, -35, 150, MPSoftwareTurnType.TANK));
-    	addSequential(new DriveStraightBasic(25, 45, true, true, 0));
+    	addSequential(new ElevatorBasic(30));
+    	addSequential(new DriveTurnBasic(true, 17, 150, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveStraightBasic(10, 45, true, true, 0));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
     	addSequential(new WaitCommand(.2));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
-    	addSequential(new DriveStraightBasic(-25, 45, true, true, 0));
+    	addSequential(new DriveStraightBasic(-20, 45, true, true, 0));
       	addSequential(new ElevatorBasic(10));
+      	addSequential(new WaitCommand(.2));
+      	addSequential(new ElevatorBasic(2));
+      	addSequential(new DriveTurnBasic(true, -90, 150, MPSoftwareTurnType.TANK));
+    	addSequential(new IntakeSetSpeed(Carriage.CUBE_INTAKE_SPEED));
+    	addSequential(new DriveStraightBasic(20, 45, true, true, 0));
+    	addSequential(new IntakePosition(true));
+    	addSequential(new DriveStraightBasic(-20, 45, true, true, 0));
+    	addSequential(new ElevatorBasic(25));
+      	addSequential(new DriveTurnBasic(true, 90, 150, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveStraightBasic(10, 45, true, true, 0));
+    	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
+    	//addSequential(new WaitCommand(.1));
+    	addSequential(new IntakePosition(false));
+    	addSequential(new WaitCommand(.2));
+    	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
+    	addSequential(new DriveStraightBasic(-20, 45, true, true, 0));
+    	
     	addSequential(new DriveSpeedShift(false));
+    	
     }
 }

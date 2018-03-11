@@ -37,8 +37,9 @@ public class ScaleFrom1 extends CommandGroup {
     	addSequential(new IntakePosition(false));
     	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
-    	addSequential(new DriveStraightBasic(-15, 20, true, true, 0));
+    	addSequential(new DriveStraightBasic(-25, 20, true, true, 0));
     	addSequential(new ElevatorBasic(10));
+    	
     	addSequential(new DriveSpeedShift(false));
 
     	//addSequential(new DriveStraightMP(50, 10, true, true, 0));  // 95 for 112" greenville
