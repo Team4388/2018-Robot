@@ -29,7 +29,7 @@ public class ScaleFrom3 extends CommandGroup {
     	
     	
     	addSequential(new DriveStraightBasic(-10, 45, true, true, 0));
-    	//addSequential(new DriveTurnBasic(true, -2, 100, MPSoftwareTurnType.TANK));
+    	
     	addSequential(new DriveStraightBasic(-270, 45, true, true, 0));
     	addSequential(new ElevatorBasic(70));
     	addSequential(new DriveStraightBasic(-30, 20, true, true, 0)); 

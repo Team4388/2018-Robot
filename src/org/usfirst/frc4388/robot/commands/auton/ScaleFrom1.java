@@ -28,10 +28,14 @@ public class ScaleFrom1 extends CommandGroup {
     	addSequential(new IntakePosition(true));
     	
     	
-    	addSequential(new DriveStraightBasic(-290, 50, true, true, 0));
+    	addSequential(new DriveStraightBasic(-10, 45, true, true, 0));
+    	
+    	addSequential(new DriveStraightBasic(-270, 45, true, true, 0));
     	addSequential(new ElevatorBasic(70));
+    	addSequential(new DriveStraightBasic(-30, 20, true, true, 0)); 
     	addSequential(new DriveTurnBasic(true, -90, 100, MPSoftwareTurnType.TANK));
     	//addSequential(new DriveStraightBasic(5, 20, true, true, 0));
+    	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
@@ -42,7 +46,7 @@ public class ScaleFrom1 extends CommandGroup {
     	
     	addSequential(new DriveSpeedShift(false));
 
-    	//addSequential(new DriveStraightMP(50, 10, true, true, 0));  // 95 for 112" greenville
+    	//addSequential(new DriveStraightMP(60, 10, true, true, 0));  // 95 for 112" greenville
        
     }
 }
