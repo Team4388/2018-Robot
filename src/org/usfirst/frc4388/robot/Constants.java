@@ -21,6 +21,8 @@ public class Constants {
     public static double kDriveLowGearMaxSpeedInchesPerSec = 12.0 * 5.0;
     public static double kDriveStraightBasicMaxSpeedInchesPerSec = 72.0;
     public static double kDriveStraightBasicMinSpeedInchesPerSec = 5.0;
+    public static double kDriveStraightBasicYawErrorDivisor = 20.0;		// steer parameter will be -yawError divided by this
+    public static double kDriveStraightBasicMaxSteerMagnitude = 0.8;	// keep absolute value of steer parameter below this
     public static double kDriveTurnBasicTankMotorOutput = 0.5;
     public static double kDriveTurnBasicSingleMotorOutput = 0.15;
     public static double kElevatorWheelDiameterInches = 1;
