@@ -33,12 +33,15 @@ public class RightSwitchAuton extends CommandGroup {
     	addSequential(new WaitCommand(.2));
     	addSequential(new DriveTurnBasic(true, 87, 150, MPSoftwareTurnType.TANK));
     	addSequential(new ElevatorBasic(30));
-    	addSequential(new DriveStraightBasic(8, 50, true, true, 0));
-    	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
+    	addParallel(new TimeoutBecaseYea());
+    	addSequential(new DriveStraightBasic(10, 50, true, true, 0));
+    	/*addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
     	addSequential(new WaitCommand(.5));
-    	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
+    	
+    	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));*/
+    	addSequential(new WaitCommand(3));
     	addSequential(new DriveStraightBasic(-20, 50, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
 

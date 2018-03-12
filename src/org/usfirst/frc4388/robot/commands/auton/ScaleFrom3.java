@@ -24,6 +24,7 @@ public class ScaleFrom3 extends CommandGroup {
     
     public ScaleFrom3() {
     	addSequential(new DriveGyroReset());
+    	addSequential(new WaitCommand(.2));
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
     	

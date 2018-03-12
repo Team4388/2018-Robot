@@ -51,7 +51,7 @@ public class Climber extends Subsystem{
     
 	public void setClimbSpeed(boolean Climb) {
 		if (Climb==true) {
-			Climber.set(0.95);
+			Climber.set(1.0);
 		}
 		if (Climb==false) {
 			Climber.set(0);

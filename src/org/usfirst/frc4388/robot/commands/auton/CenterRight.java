@@ -36,6 +36,7 @@ public class CenterRight extends CommandGroup {
     	addSequential(new DriveTurnBasic(true, -35, 150, MPSoftwareTurnType.TANK));
     	addParallel(new TimeoutBecaseYea());
     	addSequential(new DriveStraightBasic(25, 45, true, true, 0));
+    	//addParallel(new TimeoutBecaseYea());
     	addSequential(new WaitCommand(3));
     	
     	

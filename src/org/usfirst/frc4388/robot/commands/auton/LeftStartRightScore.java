@@ -40,13 +40,20 @@ public class LeftStartRightScore extends CommandGroup {
     	addSequential(new WaitCommand(.2));
     	addSequential(new DriveTurnBasic(true, 73, 150, MPSoftwareTurnType.TANK));
     	addSequential(new WaitCommand(.2));
+    	addParallel(new TimeoutBecaseYea());
     	addSequential(new DriveStraightBasic(10, 60, true, true, 0));
-    	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
+    	addSequential(new WaitCommand(3));
+    	
+    	
+    	/*addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));
     	addSequential(new DriveStraightBasic(5, 60, true, true, 0));
     	addSequential(new WaitCommand(.2));
-    	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
+    	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));*/
+    	
+    	
+    	
     	addSequential(new DriveStraightBasic(-15, 60, true, true, 0));
     	addSequential(new DriveSpeedShift(false));
     	
