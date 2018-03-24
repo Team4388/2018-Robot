@@ -20,21 +20,18 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class Cube2Right extends CommandGroup {
+public class Cube2Left extends CommandGroup {
     
-    public Cube2Right() {
+    public Cube2Left() {
     	addSequential(new DriveGyroReset());
     	addSequential(new WaitCommand(.2));
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
     	
-    	
-    	//addSequential(new DriveStraightBasic(-10, 35, true, true, 0));
-    	
     	addSequential(new DriveStraightBasic(-300, 70, true, true, 0));
     	addSequential(new DriveStraightBasic(1, 30, true, true, 0));
     	addSequential(new ElevatorBasic(70)); 
-    	addSequential(new DriveTurnBasic(true, 90, 100, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, -90, 100, MPSoftwareTurnType.TANK));
     	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	addSequential(new WaitCommand(.1));
@@ -46,7 +43,7 @@ public class Cube2Right extends CommandGroup {
     	addParallel(new ElevatorBasic(4));
     	
     	//////////////////////////////////////////////////////////////////////////
-    	addSequential(new DriveTurnBasic(true, -69, 100, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, 69, 100, MPSoftwareTurnType.TANK));
     	//////////////////////////////////////////////////////////////////////////
     	
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_INTAKE_FAST_SPEED));
@@ -69,7 +66,6 @@ public class Cube2Right extends CommandGroup {
     	addSequential(new WaitCommand(1.5));
     	addSequential(new DriveStraightBasic(-20, 40, true, true, 0));
     	addSequential(new ElevatorBasic(5));
-    	
     	
     	
     	addSequential(new DriveSpeedShift(false));

@@ -35,7 +35,8 @@ public class Carriage extends Subsystem {
 	private WPI_TalonSRX carriageRight;
 	public static enum CarriageControlMode { JOYSTICK, MP_STRAIGHT, HOLD, MANUAL};
 	public static final double CUBE_INTAKE_SPEED = 0.40;
-	public static final double CUBE_EJECT_SPEED = -0.8;
+	public static final double CUBE_INTAKE_FAST_SPEED = 0.50;
+	public static final double CUBE_EJECT_SPEED = -0.75;
 	public static final double CUBE_STOP_SPEED = 0;
 	/////^^^^^^^^^ replace this line with the modes we need
 	

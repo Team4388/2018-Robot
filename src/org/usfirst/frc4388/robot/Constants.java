@@ -23,7 +23,7 @@ public class Constants {
     public static double kDriveStraightBasicMinSpeedInchesPerSec = 5.0;
     public static double kDriveStraightBasicYawErrorDivisor = 20.0;		// steer parameter will be -yawError divided by this
     public static double kDriveStraightBasicMaxSteerMagnitude = 0.8;	// keep absolute value of steer parameter below this
-    public static double kDriveTurnBasicTankMotorOutput = 0.5;
+    public static double kDriveTurnBasicTankMotorOutput = 0.4;
     public static double kDriveTurnBasicSingleMotorOutput = 0.15;
     public static double kElevatorWheelDiameterInches = 1;
 	// Encoders
@@ -35,7 +35,7 @@ public class Constants {
     public static double kElevatorInchesOfTravelPerRev = 3.75;
 //	public static double kElevatorEncoderTicksPerInch = (double)kElevatorEncoderTickesPerRev / kElevatorInchesOfTravelPerRev;
 	public static double kElevatorEncoderTicksPerInch = 126.36;
-	public static double kElevatorBasicPercentOutputUp = -.8;
+	public static double kElevatorBasicPercentOutputUp = -0.85;
 	public static double kElevatorBasicPercentOutputDown =.7;
 	
     // CONTROL LOOP GAINS

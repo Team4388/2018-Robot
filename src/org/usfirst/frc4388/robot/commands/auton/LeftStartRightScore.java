@@ -30,7 +30,7 @@ public class LeftStartRightScore extends CommandGroup {
     	addSequential(new IntakePosition(true));
     	
     	
-    	addSequential(new DriveStraightBasic(-215, 40, true, true, 0));
+    	addSequential(new DriveStraightBasic(-215, 75, true, true, 0));
     	addSequential(new WaitCommand(.2));
     	addSequential(new ElevatorBasic(5));
     	addSequential(new DriveTurnBasic(true, -73, 150, MPSoftwareTurnType.TANK));

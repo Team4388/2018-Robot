@@ -192,7 +192,7 @@ public class OI
 			//SmartDashboard.putData("Move Stop", new ElevatorSetSpeed(ElevatorAuton.RAISE_ELEVATOR_SPEED));
 	        
 	        
-			SmartDashboard.putData("move elevator", new ElevatorBasic(20));
+			//SmartDashboard.putData("move elevator", new ElevatorBasic(20));
 	        
 			///SmartDashboard.putData("Move Down", new ElevatorSetSpeed(ElevatorAuton.LOWER_ELEVATOR_SPEED));
 			///SmartDashboard.putData("Move UP", new ElevatorSetSpeed(ElevatorAuton.STOP_ELEVATOR_SPEED));
@@ -260,7 +260,7 @@ public class OI
 			//Button turnRelativeMP = new InternalButton();
 			//turnRelativeMP.whenPressed(new DriveRelativeTurnMP(10, Drive.MP_AUTON_MAX_TURN_RATE_DEG_PER_SEC, MPSoftwareTurnType.LEFT_SIDE_ONLY ));
 			//SmartDashboard.putData("Turn Relative 10", turnRelativeMP);
-			
+		/*	
 			Button turnAbsoluteMP = new InternalButton();
 			turnAbsoluteMP.whenPressed(new DriveAbsoluteTurnMP(45, Drive.MP_AUTON_MAX_TURN_RATE_DEG_PER_SEC, MPSoftwareTurnType.LEFT_SIDE_ONLY));
 			SmartDashboard.putData("Turn Absolute 45", turnAbsoluteMP);
@@ -268,13 +268,13 @@ public class OI
 			Button turnRelativePID = new InternalButton();
 			turnRelativePID.whenPressed(new DriveRelativeTurnPID(45, MPSoftwareTurnType.TANK));
 			SmartDashboard.putData("Turn Relative 45", turnRelativePID);
-
+*/
 //			Button gyroReset = new InternalButton();
 //			gyroReset.whenPressed(new DriveGyroReset());
 //			SmartDashboard.putData("Gyro Reset", gyroReset);
 			SmartDashboard.putData("Reset Gyro", new DriveGyroReset());
 			//SmartDashboard.putData("reset Encoders", new drive.resetEncoders());
-
+			SmartDashboard.putData("clampy boi", new IntakePosition(true));
 
 			// Camera
 			//Button cameraUpdateDashboard = new InternalButton();

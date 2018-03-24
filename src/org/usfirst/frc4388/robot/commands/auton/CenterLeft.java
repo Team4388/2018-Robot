@@ -37,7 +37,7 @@ public class CenterLeft extends CommandGroup {
     	addSequential(new DriveTurnBasic(true, 28, 150, MPSoftwareTurnType.TANK));
     	addParallel(new TimeoutBecaseYea());
     	addSequential(new DriveStraightBasic(12, 45, true, true, 0));
-    	//addParallel(new TimeoutBecaseYea());
+    	
     	addSequential(new WaitCommand(3));
     	
     	
