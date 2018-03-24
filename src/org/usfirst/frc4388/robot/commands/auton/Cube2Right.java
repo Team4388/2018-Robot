@@ -28,9 +28,6 @@ public class Cube2Right extends CommandGroup {
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
     	
-    	
-    	//addSequential(new DriveStraightBasic(-10, 35, true, true, 0));
-    	
     	addSequential(new DriveStraightBasic(-300, 70, true, true, 0));
     	addSequential(new DriveStraightBasic(1, 30, true, true, 0));
     	addSequential(new ElevatorBasic(70)); 
@@ -69,7 +66,6 @@ public class Cube2Right extends CommandGroup {
     	addSequential(new WaitCommand(1.5));
     	addSequential(new DriveStraightBasic(-20, 40, true, true, 0));
     	addSequential(new ElevatorBasic(5));
-    	
     	
     	
     	addSequential(new DriveSpeedShift(false));
