@@ -655,7 +655,7 @@ public class Drive extends Subsystem implements ControlLoopable
 					m_steerInput, m_steerNonLinear, STEER_NON_LINEARITY);
 		}
 		
-		m_drive.arcadeDrive(m_moveOutput, m_steerOutput*.85);
+		m_drive.arcadeDrive(m_moveOutput, m_steerOutput*.75);
 		// break;
 		// case CONTROLLER_XBOX_ARCADE_RIGHT:
 		// m_moveInput =
