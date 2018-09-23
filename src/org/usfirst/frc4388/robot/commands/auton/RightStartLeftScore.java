@@ -38,9 +38,9 @@ public class RightStartLeftScore extends CommandGroup {
     	addSequential(new DriveStraightBasic(155, 60, true, true, 0));
     	addSequential(new ElevatorBasic(30));
     	addSequential(new WaitCommand(.2));
-    	addSequential(new DriveTurnBasic(true, -73, 150, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, -85, 150, MPSoftwareTurnType.TANK));
     	addParallel(new TimeoutBecaseYea());
-    	addSequential(new DriveStraightBasic(10, 60, true, true, 0));
+    	addSequential(new DriveStraightBasic(15, 60, true, true, 0));
     	addSequential(new WaitCommand(3));
     	
     	

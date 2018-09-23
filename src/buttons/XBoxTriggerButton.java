@@ -4,10 +4,6 @@ import org.usfirst.frc4388.controller.XboxController;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 
-/**
- *
- * @author bselle
- */
 public class XBoxTriggerButton extends Button 
 {
 	public static final int RIGHT_TRIGGER = 0;

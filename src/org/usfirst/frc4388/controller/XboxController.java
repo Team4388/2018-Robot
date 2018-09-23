@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.usfirst.frc4388.controller;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-//TODO Code support for Start/Back/XBox(?) buttons.
 /**
  * This is a wrapper for the WPILib Joystick class that represents an XBox 
  * controller.

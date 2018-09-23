@@ -1,16 +1,14 @@
 
 package org.usfirst.frc4388.robot;
 
-//import org.usfirst.frc4388.utility.ConstantsBase;
 
 /**
  * A list of constants used by the rest of the robot code. This include physics
  * constants as well as constants determined through calibrations.
  */
-//public class Constants extends ConstantsBase {
+
 public class Constants {
-    // Wheels
-    //public static double kDriveWheelDiameterInches = 5.9; 
+
     public static double kDriveWheelDiameterInches = 6.04; 
     public static double kTrackLengthInches = 10;
     public static double kTrackWidthInches = 26.5;
@@ -33,7 +31,6 @@ public class Constants {
 	// Elevator
 	public static int kElevatorEncoderTickesPerRev = 256;
     public static double kElevatorInchesOfTravelPerRev = 3.75;
-//	public static double kElevatorEncoderTicksPerInch = (double)kElevatorEncoderTickesPerRev / kElevatorInchesOfTravelPerRev;
 	public static double kElevatorEncoderTicksPerInch = 126.36;
 	public static double kElevatorBasicPercentOutputUp = -0.85;
 	public static double kElevatorBasicPercentOutputDown =.7;
@@ -72,12 +69,4 @@ public class Constants {
     public static double kPathFollowingMaxVel = 120.0; // inches/sec
     public static double kPathFollowingMaxAccel = 80.0; // inches/sec^2
 
-//    @Override
-//    public String getFileLocation() {
-//        return "~/constants.txt";
-//    }
-
-//    static {
-//        new Constants().loadFromFile();
-//    }
 }

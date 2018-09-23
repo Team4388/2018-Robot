@@ -39,7 +39,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
@@ -110,7 +109,6 @@ public class Drive extends Subsystem implements ControlLoopable
 	//private DigitalInput hopperSensorRed;
 	//private DigitalInput hopperSensorBlue;
 
-	
 	
 	private double climbSpeed;
 	
@@ -210,7 +208,6 @@ public class Drive extends Subsystem implements ControlLoopable
 			rightDrive2 = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_MOTOR2_CAN_ID);
 //			rightDrive3 = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_MOTOR3_CAN_ID);
 			
-			elevatorRight = new CANTalonEncoder(RobotMap.ELEVATOR_MOTOR1_ID, ENCODER_TICKS_TO_INCHES, FeedbackDevice.QuadEncoder);
 			//gyroPigeon = new PigeonImu(leftDrive2);
 			gyroNavX = new AHRS(SPI.Port.kMXP);
 
@@ -690,15 +687,8 @@ public class Drive extends Subsystem implements ControlLoopable
 	}
 
 	public void rawDriveLeftRight(double leftPercentOutput, double rightPercentOutput) {
-		
-			if (elevatorRight.getSelectedSensorPosition(0) >= 3550) {
-				leftDrive1.set(ControlMode.PercentOutput, leftPercentOutput*.5);
-				rightDrive1.set(ControlMode.PercentOutput, rightPercentOutput*.5);
-			}
-			else /*(elevatorRight.getSelectedSensorPosition(0) < 3550)*/ {
-				leftDrive1.set(ControlMode.PercentOutput, leftPercentOutput);
-				rightDrive1.set(ControlMode.PercentOutput, rightPercentOutput);
-			}
+		leftDrive1.set(ControlMode.PercentOutput, leftPercentOutput);
+		rightDrive1.set(ControlMode.PercentOutput, rightPercentOutput);
 	}
 
 	private boolean inDeadZone(double input) {

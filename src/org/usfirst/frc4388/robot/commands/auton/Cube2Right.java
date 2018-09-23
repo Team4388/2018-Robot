@@ -28,8 +28,8 @@ public class Cube2Right extends CommandGroup {
     	addSequential(new DriveSpeedShift(true));
     	addSequential(new IntakePosition(true));
     	
-    	addSequential(new DriveStraightBasic(-300, 70, true, true, 0));
-    	addSequential(new DriveStraightBasic(1, 30, true, true, 0));
+    	addSequential(new DriveStraightBasic(-259, 70, true, true, 0));
+
     	addSequential(new ElevatorBasic(70)); 
     	addSequential(new DriveTurnBasic(true, 90, 100, MPSoftwareTurnType.TANK));
     	addSequential(new WaitCommand(.5));
@@ -39,24 +39,22 @@ public class Cube2Right extends CommandGroup {
     	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
     	
-    	addSequential(new DriveStraightBasic(-10, 30, true, true, 0));
+    	addSequential(new DriveStraightBasic(-16, 40, true, true, 0));
     	addParallel(new ElevatorBasic(4));
     	
     	//////////////////////////////////////////////////////////////////////////
-    	addSequential(new DriveTurnBasic(true, -69, 100, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveTurnBasic(true, -65, 100, MPSoftwareTurnType.TANK));
     	//////////////////////////////////////////////////////////////////////////
     	
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_INTAKE_FAST_SPEED));
     	
     	/////////////////////////////////////////////////////////////
-    	addSequential(new DriveStraightBasic(10, 30, true, true, 0));
-    	addSequential(new DriveStraightBasic(80, 60, true, true, 0));
-    	addSequential(new DriveStraightBasic(33, 20, true, true, 0));
+    	addSequential(new DriveStraightBasic(110, 70, true, true, 0));
+    	addSequential(new DriveStraightBasic(42, 60, true, true, 0));
     	/////////////////////////////////////////////////////////////
-    	addSequential(new WaitCommand(.5));
+    	
     	addSequential(new IntakePosition(true));
-    	//addSequential(new WaitCommand(.3));
-    	addSequential(new WaitCommand(.2));
+
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_STOP_SPEED));
     	addParallel(new TimeoutBecaseYea());
     	addSequential(new ElevatorBasic(28));

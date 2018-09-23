@@ -24,7 +24,7 @@ public class TimeoutBecaseYea extends CommandGroup {
     
     public TimeoutBecaseYea() 
     {
-    	addSequential(new WaitCommand(1.5));
+    	addSequential(new WaitCommand(1.3));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
     	//addSequential(new WaitCommand(.1));
     	addSequential(new IntakePosition(false));

@@ -31,10 +31,11 @@ public class ScaleFrom3 extends CommandGroup {
     	
     	addSequential(new DriveStraightBasic(-10, 20, true, true, 0));
     	
-    	addSequential(new DriveStraightBasic(-270, 45, true, true, 0));
+    	addSequential(new DriveStraightBasic(-270, 60, true, true, 0));
     	addSequential(new ElevatorBasic(70));
     	addSequential(new DriveStraightBasic(-30, 20, true, true, 0)); 
     	addSequential(new DriveTurnBasic(true, 90, 100, MPSoftwareTurnType.TANK));
+    	addSequential(new DriveStraightBasic(10, 20, true, true, 0)); 
     	//addSequential(new DriveStraightBasic(5, 20, true, true, 0));
     	addSequential(new WaitCommand(.5));
     	addSequential(new IntakeSetSpeed(Carriage.CUBE_EJECT_SPEED));
