@@ -1,6 +1,4 @@
-
-
-
+//TODO clean up white space
 package org.usfirst.frc4388.robot;
 
 import buttons.XBoxTriggerButton;

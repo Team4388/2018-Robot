@@ -221,7 +221,7 @@ public class Drive extends Subsystem implements ControlLoopable
 			//leftDrive1.setVoltageRampRate(VOLTAGE_RAMP_RATE);
 			//leftDrive1.setNominalClosedLoopVoltage(12.0);
 			leftDrive1.clearStickyFaults(0);
-			leftDrive1.setInverted(false);//false on comp 2108, false on microbot
+			leftDrive1.setInverted(true);//false on comp 2108, false on microbot, true on practice chasis
 			leftDrive1.setSensorPhase(true);//true on comp 2108, false on microbot
 			leftDrive1.setSafetyEnabled(false);
 			//leftDrive1.setCurrentLimit(15);
@@ -238,7 +238,7 @@ public class Drive extends Subsystem implements ControlLoopable
 //	        }
 			
 
-			leftDrive2.setInverted(false);//false on comp 2108, false on microbot
+			leftDrive2.setInverted(true);//false on comp 2108, false on microbot, true on practice chasis
 			leftDrive2.setSafetyEnabled(false);
 			leftDrive2.setNeutralMode(NeutralMode.Brake);
 			leftDrive2.set(ControlMode.Follower, leftDrive1.getDeviceID());
@@ -630,7 +630,7 @@ public class Drive extends Subsystem implements ControlLoopable
 		// m_steerInput =
 		// OI.getInstance().getDriveTrainController().getRightXAxis();
 		m_moveInput = -OI.getInstance().getDriverController().getLeftYAxis();
-		m_steerInput = OI.getInstance().getDriverController().getRightXAxis();
+		m_steerInput = /*only negitive on chasis bot*/-OI.getInstance().getDriverController().getRightXAxis();
 
 		if (controlMode == DriveControlMode.JOYSTICK) {
 			m_moveOutput = adjustForSensitivity(m_moveScale, m_moveTrim,

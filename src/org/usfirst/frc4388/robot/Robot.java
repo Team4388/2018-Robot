@@ -140,7 +140,6 @@ public class Robot extends IterativeRobot
 		LRautonTaskChooser = new SendableChooser<Command>();
 		
 		LRautonTaskChooser.addDefault("Choose LR Program", new CrossTheBaseLine());
-		
 	
 		LRautonTaskChooser.addObject("Left to Left Switch", new LeftSwitchAuton());
 		LRautonTaskChooser.addObject("Right to 2 Cube Scale", new Cube2Right());	
